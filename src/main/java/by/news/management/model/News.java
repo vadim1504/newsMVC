@@ -5,6 +5,12 @@ import java.sql.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Entity bean with JPA annotations
+ * Hibernate provides JPA implementation
+ * @author vadim
+ *
+ */
 @Entity
 @Table(name = "news")
 public class News {
@@ -63,4 +69,39 @@ public class News {
         this.text = text;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        News news = (News) o;
+
+        if (id != news.id) return false;
+        if (name != null ? !name.equals(news.name) : news.name != null) return false;
+        if (comments != null ? !comments.equals(news.comments) : news.comments != null) return false;
+        if (date != null ? !date.equals(news.date) : news.date != null) return false;
+        return text != null ? text.equals(news.text) : news.text == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (comments != null ? comments.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "News{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", comments=" + comments +
+                ", date=" + date +
+                ", text='" + text + '\'' +
+                '}';
+    }
 }
+

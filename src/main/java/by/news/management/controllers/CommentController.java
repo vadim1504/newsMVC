@@ -21,6 +21,10 @@ public class CommentController {
     @Autowired
     private NewsService newsService;
 
+    /**
+     * This method will be called on XmlHttpRequest, handling POST request for
+     * saving comment in database. It also validates the news input.
+     */
     @PostMapping(value = "/comment", consumes = {MediaType.APPLICATION_JSON_VALUE} )
     public ResponseEntity<Void> addComment(@RequestBody Comment comment) {
         News news = newsService.getNewsById(comment.getNews());
