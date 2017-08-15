@@ -1,2 +1,2 @@
-create war file : mvn package  
-run application : mvn spring-boot:run  
+create war file : mvn package -P remote  
+create jar file : mvn package -P local
